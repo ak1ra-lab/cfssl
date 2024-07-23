@@ -16,7 +16,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/google/certificate-transparency-go"
+	ct "github.com/google/certificate-transparency-go"
 	"golang.org/x/crypto/ocsp"
 )
 
@@ -24,6 +24,7 @@ const (
 	testCertFile                 = "testdata/cert.pem"
 	testCertDERFile              = "testdata/cert.der"
 	testBundleFile               = "testdata/bundle.pem"
+	testCABundleFile             = "testdata/ca_bundle.pem"
 	testExtraWSCertFile          = "testdata/cert_with_whitespace.pem"
 	testExtraWSBundleFile        = "testdata/bundle_with_whitespace.pem"
 	testMessedUpBundleFile       = "testdata/messed_up_bundle.pem"
@@ -284,7 +285,7 @@ func TestSignatureString(t *testing.T) {
 }
 
 func TestParseCertificatePEM(t *testing.T) {
-	for _, testFile := range []string{testCertFile, testExtraWSCertFile, testSinglePKCS7} {
+	for _, testFile := range []string{testCertFile, testExtraWSCertFile, testSinglePKCS7, testBundleFile} {
 		certPEM, err := os.ReadFile(testFile)
 		if err != nil {
 			t.Fatal(err)
