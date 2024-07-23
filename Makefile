@@ -1,4 +1,4 @@
-VERSION := $(shell git describe --tags --abbrev=0 | tr -d '[:alpha:]')
+VERSION := $(shell git describe --tags --abbrev=0)
 LDFLAGS := "-s -w -X github.com/cloudflare/cfssl/cli/version.version=$(VERSION)"
 
 export GOFLAGS := -mod=vendor
